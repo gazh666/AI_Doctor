@@ -1,0 +1,77 @@
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env.local
+frontend/.env.production.local
+frontend/.env.development.local
+
+# --- Python (Backend) ---
+backend/venv/
+backend/env/
+__pycache__/
+*.py[cod]
+*.py[cod].*
+backend/*$py.class
+backend/.pytest_cache/
+backend/.ruff_cache/
+backend/.mypy_cache/
+backend/htmlcov/
+backend/.coverage
+backend/.coverage.*
+backend/logs/
+backend/instance/
+
+# --- Node.js / Next.js (Frontend) ---
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.turbo/
+frontend/.vercel
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
+
+# --- Databases & Vector Stores ---
+# Ignore local SQLite and persistent vector index files
+*.db
+*.sqlite
+*.sqlite3
+backend/data/vector_store/
+backend/data/index/
+
+# --- User Uploads & Temporary Assets ---
+# Prevent local test uploads from entering the repo
+backend/data/uploads/**/*
+!backend/data/uploads/.gitkeep
+backend/storage/
+backend/temp/
+frontend/public/uploads/
+
+# --- Operating System & IDEs ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+
+# --- Testing & Coverage ---
+coverage/
+.nyc_output/
+backend/tests/assets/temp_*
+frontend/playwright-report/
+frontend/test-results/
+
+# --- Logs ---
+*.log
+logs/
+npm-debug.log*

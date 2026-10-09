@@ -1,0 +1,101 @@
+# ==============================================================================
+# RURAL AI DOCTOR - LEAN PRODUCTION (RENDER FREE TIER COMPATIBLE)
+# ==============================================================================
+
+# --- Web Framework & API ---
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+pydantic-settings
+gunicorn
+
+# --- Database & Vector Search ---
+sqlalchemy>=2.0.0
+asyncpg
+psycopg[binary]
+pgvector
+alembic
+
+# --- AI & Agentic Orchestration ---
+langchain
+langchain-google-genai
+langgraph
+langsmith
+langchain-community
+google-generativeai
+
+# --- Document Processing (RAG) ---
+pypdf
+python-docx
+unstructured
+tiktoken
+pymupdf4llm
+pymupdf
+
+# --- Medical Imaging & Computer Vision ---
+pillow
+opencv-python-headless
+numpy<2  # torch 2.0 与 numpy 2.x 不兼容（tensor.numpy() 会崩溃）
+
+# --- Voice & Audio Engineering ---
+# Removed faster-whisper (Heavy). Using Gemini/ElevenLabs for cloud audio.
+pydub
+soundfile
+ffmpeg-python
+gtts
+elevenlabs
+noisereduce
+
+# --- Lung Sound Model (PyTorch) ---
+torch
+torchaudio
+librosa
+timm==0.4.5
+
+# --- Performance, Caching & Rate Limiting ---
+redis
+cachetools
+slowapi
+
+# --- Security & Authentication ---
+python-jose[cryptography]
+passlib[bcrypt]
+python-dotenv
+httpx
+
+# --- Monitoring, Logging & Observability ---
+python-json-logger
+structlog
+sentry-sdk[fastapi]
+prometheus-fastapi-instrumentator
+
+# --- Testing & Quality Assurance ---
+pytest
+pytest-asyncio
+pytest-cov
+pytest-mock
+faker
+google-genai
+
+# AUTHENTICATION & AUTHORIZATION (NEW)
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+bcrypt==4.2.1
+
+# EMAIL (NEW)
+fastapi-mail
+jinja2
+
+# PDF GENERATION (NEW)
+reportlab
+pypdf
+weasyprint
+
+# EXCEL EXPORT (NEW)
+openpyxl
+xlsxwriter
+
+# SCHEDULING (NEW)
+apscheduler

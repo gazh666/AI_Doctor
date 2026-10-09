@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /profile/
+
+Sitemap: https://rural-ai-doctor-rwp9-ms2ddaaq6-rockys-projects-e671580a.vercel.app/sitemap.xml
