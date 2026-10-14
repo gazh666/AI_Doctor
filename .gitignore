@@ -75,3 +75,6 @@ frontend/test-results/
 *.log
 logs/
 npm-debug.log*
+
+# --- CI/CD (local-only, not committed) ---
+.github/
