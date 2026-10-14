@@ -1,446 +1,1181 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rural AI Doctor · 作品集</title>
-<style>
-  :root {
-    --bg: #0b1220;
-    --bg2: #0f1a2e;
-    --card: #132036;
-    --card2: #16263f;
-    --line: #24344f;
-    --text: #e6edf7;
-    --muted: #8fa3bf;
-    --cyan: #22d3ee;
-    --teal: #14b8a6;
-    --blue: #3b82f6;
-    --violet: #8b5cf6;
-    --green: #22c55e;
-    --orange: #f97316;
-    --amber: #eab308;
-    --red: #ef4444;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: "Segoe UI", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: radial-gradient(1200px 600px at 80% -10%, #12294d 0%, transparent 60%),
-                radial-gradient(900px 500px at -10% 10%, #0d3a3a 0%, transparent 55%),
-                var(--bg);
-    color: var(--text);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; text-decoration: none; }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rural AI Doctor · 作品集</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg2: #0f1a2e;
+      --card: #132036;
+      --card2: #16263f;
+      --line: #24344f;
+      --text: #e6edf7;
+      --muted: #8fa3bf;
+      --cyan: #22d3ee;
+      --teal: #14b8a6;
+      --blue: #3b82f6;
+      --violet: #8b5cf6;
+      --green: #22c55e;
+      --orange: #f97316;
+      --amber: #eab308;
+      --red: #ef4444;
+    }
 
-  /* Nav */
-  nav {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: blur(12px);
-    background: rgba(11, 18, 32, 0.72);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
-  .brand { font-weight: 700; font-size: 17px; letter-spacing: .3px; display: flex; align-items: center; gap: 9px; }
-  .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
-  .nav-links { display: flex; gap: 26px; font-size: 14px; color: var(--muted); }
-  .nav-links a:hover { color: var(--text); }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  /* Hero */
-  header { padding: 90px 0 60px; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 14px; border-radius: 999px; font-size: 13px;
-    border: 1px solid var(--line); background: var(--card); color: var(--cyan);
-    margin-bottom: 26px;
-  }
-  h1 { font-size: clamp(36px, 5.4vw, 58px); line-height: 1.12; font-weight: 800; letter-spacing: -.5px; }
-  h1 .grad {
-    background: linear-gradient(90deg, var(--cyan), var(--violet));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .hero-sub { font-size: 18px; color: var(--muted); max-width: 720px; margin: 22px 0 34px; }
-  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 22px; border-radius: 10px; font-size: 15px; font-weight: 600;
-    border: 1px solid var(--line); cursor: pointer; transition: .18s;
-  }
-  .btn-primary { background: linear-gradient(90deg, #0891b2, #2563eb); border: none; color: #fff; box-shadow: 0 8px 24px rgba(37, 99, 235, .35); }
-  .btn-primary:hover { transform: translateY(-2px); }
-  .btn-ghost { background: var(--card); color: var(--text); }
-  .btn-ghost:hover { border-color: var(--cyan); }
-  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 58px; }
-  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
-  .stat b { display: block; font-size: 30px; font-weight: 800; background: linear-gradient(90deg, var(--cyan), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .stat span { font-size: 13px; color: var(--muted); }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* Sections */
-  section { padding: 58px 0; }
-  .sec-head { margin-bottom: 34px; }
-  .sec-tag { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); font-weight: 700; }
-  h2 { font-size: clamp(26px, 3.4vw, 34px); font-weight: 750; margin-top: 8px; letter-spacing: -.3px; }
-  .sec-desc { color: var(--muted); margin-top: 12px; max-width: 760px; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, #12294d 0%, transparent 60%),
+        radial-gradient(900px 500px at -10% 10%, #0d3a3a 0%, transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* Feature cards */
-  .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .feature {
-    background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
-    transition: .2s;
-  }
-  .feature:hover { transform: translateY(-4px); border-color: #33507c; }
-  .feature img { width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover; object-position: top; background: #0a1120; }
-  .feature-body { padding: 18px 20px 20px; }
-  .feature-body h3 { font-size: 17px; margin-bottom: 7px; display: flex; align-items: center; gap: 9px; }
-  .feature-body p { font-size: 14px; color: var(--muted); }
-  .icon { width: 34px; height: 34px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; font-size: 17px; flex: 0 0 auto; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-  /* Architecture */
-  .arch { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 34px 30px; }
-  .layer { display: flex; align-items: center; gap: 14px; padding: 15px 0; border-bottom: 1px dashed var(--line); }
-  .layer:last-child { border-bottom: none; }
-  .layer-tag {
-    flex: 0 0 118px; font-size: 13px; font-weight: 700; color: var(--text);
-    background: var(--card2); border: 1px solid var(--line); padding: 8px 12px; border-radius: 9px; text-align: center;
-  }
-  .layer-items { display: flex; flex-wrap: wrap; gap: 9px; }
-  .chip {
-    font-size: 12.5px; padding: 6px 12px; border-radius: 999px;
-    background: var(--card2); border: 1px solid var(--line); color: var(--muted);
-  }
-  .chip.hl { color: var(--cyan); border-color: #155e75; background: rgba(34,211,238,.08); }
-  .flow-note { font-size: 12.5px; color: var(--muted); margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
 
-  /* Stack */
-  .stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .stack { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
-  .stack h3 { font-size: 14px; margin-bottom: 13px; color: var(--cyan); }
-  .stack ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
-  .stack li { font-size: 12.5px; color: var(--muted); background: var(--card2); border: 1px solid var(--line); padding: 5px 11px; border-radius: 999px; }
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 18, 32, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
 
-  /* 二次开发 */
-  .dev2 { border: 1px solid #1e4f5c; background: linear-gradient(180deg, rgba(34,211,238,.06), transparent), var(--card); }
-  .dev2-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 26px; align-items: start; }
-  .dev2-point { display: flex; gap: 13px; padding: 14px 0; border-bottom: 1px dashed var(--line); }
-  .dev2-point:last-child { border-bottom: none; }
-  .dev2-point .num { flex: 0 0 30px; height: 30px; border-radius: 50%; background: rgba(34,211,238,.12); color: var(--cyan); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
-  .dev2-point h4 { font-size: 15px; margin-bottom: 4px; }
-  .dev2-point p { font-size: 13.5px; color: var(--muted); }
-  .prob-demo { background: var(--card2); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
-  .prob-demo .title { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
-  .prob-bar { margin-bottom: 11px; }
-  .prob-bar .row { display: flex; align-items: center; gap: 10px; font-size: 13px; margin-bottom: 5px; }
-  .prob-bar .row .cap { text-transform: capitalize; }
-  .prob-bar .track { height: 10px; background: #0a1120; border-radius: 999px; overflow: hidden; }
-  .prob-bar .fill { height: 100%; border-radius: 999px; }
-  .wf { margin-top: 16px; }
-  .wf svg { width: 100%; height: auto; display: block; }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+    }
 
-  /* Safety */
-  .safety { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 26px 28px; display: flex; gap: 16px; align-items: flex-start; }
-  .safety .icon { background: rgba(248,113,113,.14); color: var(--red); }
-  .safety p { font-size: 14px; color: var(--muted); }
+    .brand {
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: .3px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
 
-  footer { border-top: 1px solid var(--line); padding: 34px 0 60px; text-align: center; color: var(--muted); font-size: 13px; }
-  footer .brand { justify-content: center; margin-bottom: 10px; }
+    .brand .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
 
-  @media (max-width: 820px) {
-    .stat-grid { grid-template-columns: repeat(2, 1fr); }
-    .feature-grid, .stack-grid, .dev2-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-  }
-</style>
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Hero */
+    header {
+      padding: 90px 0 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--cyan);
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 5.4vw, 58px);
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    h1 .grad {
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 720px;
+      margin: 22px 0 34px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      transition: .18s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #0891b2, #2563eb);
+      border: none;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(37, 99, 235, .35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: var(--card);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--cyan);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 58px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 30px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .stat span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Sections */
+    section {
+      padding: 58px 0;
+    }
+
+    .sec-head {
+      margin-bottom: 34px;
+    }
+
+    .sec-tag {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(26px, 3.4vw, 34px);
+      font-weight: 750;
+      margin-top: 8px;
+      letter-spacing: -.3px;
+    }
+
+    .sec-desc {
+      color: var(--muted);
+      margin-top: 12px;
+      max-width: 760px;
+    }
+
+    /* Feature cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: .2s;
+    }
+
+    .feature:hover {
+      transform: translateY(-4px);
+      border-color: #33507c;
+    }
+
+    .feature img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      object-position: top;
+      background: #0a1120;
+    }
+
+    .feature-body {
+      padding: 18px 20px 20px;
+    }
+
+    .feature-body h3 {
+      font-size: 17px;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .feature-body p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      flex: 0 0 auto;
+    }
+
+    /* Architecture */
+    .arch {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 34px 30px;
+    }
+
+    .layer {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .layer:last-child {
+      border-bottom: none;
+    }
+
+    .layer-tag {
+      flex: 0 0 118px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      background: var(--card2);
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      border-radius: 9px;
+      text-align: center;
+    }
+
+    .layer-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .chip {
+      font-size: 12.5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--card2);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .chip.hl {
+      color: var(--cyan);
+      border-color: #155e75;
+      background: rgba(34, 211, 238, .08);
+    }
+
+    .flow-note {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Stack */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .stack {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .stack h3 {
+      font-size: 14px;
+      margin-bottom: 13px;
+      color: var(--cyan);
+    }
+
+    .stack ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .stack li {
+      font-size: 12.5px;
+      color: var(--muted);
+      background: var(--card2);
+      border: 1px solid var(--line);
+      padding: 5px 11px;
+      border-radius: 999px;
+    }
+
+    /* 二次开发 */
+    .dev2 {
+      border: 1px solid #1e4f5c;
+      background: linear-gradient(180deg, rgba(34, 211, 238, .06), transparent), var(--card);
+    }
+
+    .dev2-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .dev2-point {
+      display: flex;
+      gap: 13px;
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .dev2-point:last-child {
+      border-bottom: none;
+    }
+
+    .dev2-point .num {
+      flex: 0 0 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(34, 211, 238, .12);
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .dev2-point h4 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .dev2-point p {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .prob-demo {
+      background: var(--card2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .prob-demo .title {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .prob-bar {
+      margin-bottom: 11px;
+    }
+
+    .prob-bar .row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .prob-bar .row .cap {
+      text-transform: capitalize;
+    }
+
+    .prob-bar .track {
+      height: 10px;
+      background: #0a1120;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .prob-bar .fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .wf {
+      margin-top: 16px;
+    }
+
+    .wf svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Safety */
+    .safety {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 26px 28px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .safety .icon {
+      background: rgba(248, 113, 113, .14);
+      color: var(--red);
+    }
+
+    .safety p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 34px 0 60px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer .brand {
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    /* 自主 Agent（Harness + ReAct Loop） */
+    .agent-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .agent-stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .agent-stat b {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--cyan);
+    }
+
+    .agent-stat span {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .agent-tools {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .tool-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 16px 18px;
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+    }
+
+    .tool-card .icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex: 0 0 auto;
+    }
+
+    .tool-card h4 {
+      font-size: 14.5px;
+      margin-bottom: 4px;
+      font-family: ui-monospace, monospace;
+      color: var(--cyan);
+    }
+
+    .tool-card p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .loop-box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 26px;
+    }
+
+    .loop-box svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cmp {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 22px;
+    }
+
+    .cmp table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .cmp th,
+    .cmp td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .cmp th {
+      background: var(--card2);
+      font-size: 12.5px;
+    }
+
+    .cmp tr:last-child td {
+      border-bottom: none;
+    }
+
+    .cmp td:first-child {
+      color: var(--muted);
+      width: 130px;
+      font-weight: 600;
+    }
+
+    .cmp .new {
+      color: var(--cyan);
+    }
+
+    .cmp .hl-cell {
+      background: rgba(34, 211, 238, .05);
+    }
+
+    @media (max-width: 820px) {
+      .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .feature-grid,
+      .stack-grid,
+      .dev2-grid,
+      .agent-tools {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<nav>
-  <div class="wrap nav-inner">
-    <div class="brand"><span class="dot"></span> Rural AI Doctor</div>
-    <div class="nav-links">
-      <a href="#features">功能</a>
-      <a href="#arch">架构</a>
-      <a href="#stack">技术栈</a>
-      <a href="#dev2">二次开发</a>
+  <nav>
+    <div class="wrap nav-inner">
+      <div class="brand"><span class="dot"></span> Rural AI Doctor</div>
+      <div class="nav-links">
+        <a href="#features">功能</a>
+        <a href="#arch">架构</a>
+        <a href="#stack">技术栈</a>
+        <a href="#dev2">二次开发</a>
+        <a href="#agent">自主 Agent</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<header>
-  <div class="wrap">
-    <div class="hero-badge">🏥 面向基层医疗的 AI 辅助诊疗平台 · 全栈项目</div>
-    <h1>Rural AI Doctor<br /><span class="grad">让优质医疗抵达乡村</span></h1>
-    <p class="hero-sub">
-      一个专注农村与低资源临床环境的 AI 辅助诊疗平台：融合对话分诊、多智能体诊断、
-      语音问诊、影像/胸片分析、RAG 医学知识检索与肺音听诊，形成从问诊到报告、全程可溯源的一体化医疗服务。
-    </p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#features">浏览完整功能 ↓</a>
-      <a class="btn btn-ghost" href="#arch">查看技术架构</a>
-    </div>
-    <div class="stat-grid">
-      <div class="stat"><b>6</b><span>核心智能体（Agent）</span></div>
-      <div class="stat"><b>3+</b><span>多模态输入（文本/语音/影像）</span></div>
-      <div class="stat"><b>4</b><span>肺音分类（ICBHI 标准）</span></div>
-      <div class="stat"><b>100%</b><span>诊断可溯源与审计</span></div>
-    </div>
-  </div>
-</header>
-
-<section id="features">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">Core Features</div>
-      <h2>核心功能矩阵</h2>
-      <p class="sec-desc">从患者入口到临床运营，覆盖完整诊疗链条。每一环都强调医学合规、证据溯源与安全保障。</p>
-    </div>
-    <div class="feature-grid">
-      <div class="feature">
-        <img src="frontend/public/WelcomePage.png" alt="欢迎页" />
-        <div class="feature-body">
-          <h3><span class="icon" style="background:rgba(34,211,238,.12);color:var(--cyan)">💬</span>对话分诊</h3>
-          <p>AI 驱动的聊天与症状分诊工作流，引导式完成第一手患者评估，快速判断紧急程度并分级。</p>
-        </div>
-      </div>
-      <div class="feature">
-        <img src="frontend/public/Diagnosis_System.png" alt="多智能体诊断" />
-        <div class="feature-body">
-          <h3><span class="icon" style="background:rgba(139,92,246,.14);color:var(--violet)">🩺</span>多智能体诊断</h3>
-          <p>分诊 → 症状 → 影像 → RAG → 诊断 → 治疗方案，LangGraph 编排完整诊断流水线与报告生成。</p>
-        </div>
-      </div>
-      <div class="feature">
-        <img src="frontend/public/Result_of_Diagnosis.png" alt="诊断结果" />
-        <div class="feature-body">
-          <h3><span class="icon" style="background:rgba(34,197,94,.14);color:var(--green)">📋</span>诊断报告与方案</h3>
-          <p>自动生成结构化诊断报告、鉴别诊断、用药方案与随访计划，附病危情况应急联动。</p>
-        </div>
-      </div>
-      <div class="feature">
-        <img src="frontend/public/Knowledge_RAG_Assistant.png" alt="RAG 知识助手" />
-        <div class="feature-body">
-          <h3><span class="icon" style="background:rgba(59,130,246,.14);color:var(--blue)">📚</span>RAG 医学知识库</h3>
-          <p>检索增强生成的医学知识工作区，接入 PubMed / MedlinePlus / OpenFDA 等权威来源并带引用溯源。</p>
-        </div>
-      </div>
-      <div class="feature">
-        <img src="frontend/public/Chest_X_Ray_Analysis.png" alt="胸片分析" />
-        <div class="feature-body">
-          <h3><span class="icon" style="background:rgba(249,115,22,.14);color:var(--orange)">🩻</span>影像 / 胸片分析</h3>
-          <p>胸部 X 光等医学影像智能分析，辅助影像诊断，融入多模态诊断流程。</p>
-        </div>
-      </div>
-      <div class="feature">
-        <img src="frontend/public/Clinical_Ops_Console.png" alt="临床运营控制台" />
-        <div class="feature-body">
-          <h3><span class="icon" style="background:rgba(234,179,8,.14);color:var(--amber)">⚙️</span>临床运营控制台</h3>
-          <p>随访计划、预约排班、数据导出、离线同步等临床运营工具，支撑真实落地场景。</p>
-        </div>
-      </div>
-      <div class="feature">
-        <img src="frontend/public/Admin_Dashboard.png" alt="管理后台" />
-        <div class="feature-body">
-          <h3><span class="icon" style="background:rgba(239,68,68,.14);color:var(--red)">🛡️</span>治理与审计后台</h3>
-          <p>药物安全校验、完整审计追踪、临床医生反馈与偏见监测面板，保障安全合规。</p>
-        </div>
-      </div>
-      <div class="feature">
-        <img src="frontend/public/Admin_Dashboard_Audit_Logs.png" alt="审计日志" />
-        <div class="feature-body">
-          <h3><span class="icon" style="background:rgba(244,114,182,.14);color:#f472b6">🗂️</span>证据溯源体系</h3>
-          <p>每一次诊断与回答都带完整引用元数据（来源、URL、摘要、相似度、证据等级与校验时间戳）。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="arch">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">Architecture</div>
-      <h2>技术架构</h2>
-      <p class="sec-desc">前后端分离、模块化服务设计，围绕多智能体工作流构建，数据层支持向量检索与完整审计。</p>
-    </div>
-    <div class="arch">
-      <div class="layer">
-        <div class="layer-tag">前端层</div>
-        <div class="layer-items">
-          <span class="chip hl">Next.js 16</span><span class="chip hl">React 19</span><span class="chip">TypeScript</span>
-          <span class="chip">Tailwind CSS</span><span class="chip">Radix UI</span><span class="chip">Zustand</span><span class="chip">React Query</span>
-        </div>
-      </div>
-      <div class="layer">
-        <div class="layer-tag">API 层</div>
-        <div class="layer-items">
-          <span class="chip hl">FastAPI</span><span class="chip">Pydantic v2</span><span class="chip">Uvicorn</span><span class="chip">Slowapi 限流</span><span class="chip">JWT 鉴权</span>
-        </div>
-      </div>
-      <div class="layer">
-        <div class="layer-tag">智能体层</div>
-        <div class="layer-items">
-          <span class="chip hl">LangGraph</span><span class="chip">LangChain</span><span class="chip">Google Gemini</span>
-          <span class="chip">分诊 → 症状 → 影像 → RAG → 诊断 → 方案</span>
-        </div>
-      </div>
-      <div class="layer">
-        <div class="layer-tag">多模态 / 模型</div>
-        <div class="layer-items">
-          <span class="chip hl">PyTorch</span><span class="chip">PBRNet 肺音模型</span><span class="chip">OpenCV</span><span class="chip">Pillow</span><span class="chip">gTTS / ElevenLabs</span>
-        </div>
-      </div>
-      <div class="layer">
-        <div class="layer-tag">数据层</div>
-        <div class="layer-items">
-          <span class="chip hl">PostgreSQL</span><span class="chip hl">pgvector</span><span class="chip">Alembic 迁移</span><span class="chip">Redis 缓存</span>
-        </div>
-      </div>
-      <div class="flow-note">
-        <span>↳ 请求流：前端 → FastAPI 路由 → 鉴权/限流 → LangGraph 工作流 → 模型/向量检索 → 持久化 → 报告返回</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="stack">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">Tech Stack</div>
-      <h2>技术栈总览</h2>
-    </div>
-    <div class="stack-grid">
-      <div class="stack">
-        <h3>前端 Frontend</h3>
-        <ul><li>Next.js 16</li><li>React 19</li><li>TypeScript</li><li>Tailwind CSS</li><li>Radix UI</li><li>Zustand</li><li>React Query</li></ul>
-      </div>
-      <div class="stack">
-        <h3>后端 Backend</h3>
-        <ul><li>FastAPI</li><li>SQLAlchemy 2</li><li>Pydantic Settings</li><li>Uvicorn</li><li>asyncpg</li><li>JWT (python-jose)</li></ul>
-      </div>
-      <div class="stack">
-        <h3>数据与基础设施</h3>
-        <ul><li>PostgreSQL</li><li>pgvector</li><li>Alembic</li><li>Redis</li><li>Prometheus</li><li>Sentry</li></ul>
-      </div>
-      <div class="stack">
-        <h3>AI 与智能体</h3>
-        <ul><li>Google Gemini</li><li>LangChain</li><li>LangGraph</li><li>LangSmith</li><li>PyTorch</li><li>librosa / timm</li></ul>
-      </div>
-      <div class="stack">
-        <h3>媒体与视觉</h3>
-        <ul><li>OpenCV</li><li>Pillow</li><li>PyMuPDF</li><li>pydub</li><li>gTTS</li><li>ElevenLabs</li></ul>
-      </div>
-      <div class="stack">
-        <h3>测试与质量</h3>
-        <ul><li>Pytest</li><li>pytest-asyncio</li><li>Jest</li><li>React Testing Library</li><li>Playwright</li><li>结构化日志</li></ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="dev2">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">Secondary Development</div>
-      <h2>二次开发：肺音诊断深度集成</h2>
-      <p class="sec-desc">在既有前后端链路之上，深度打通本地 PBRNet 呼吸音模型，并增强推理结果的可视化呈现，让肺音听诊从「可用」升级为「可解释、可视化」。</p>
-    </div>
-    <div class="arch dev2">
-      <div class="dev2-grid">
-        <div>
-          <div class="dev2-point">
-            <div class="num">1</div>
-            <div>
-              <h4>全链路打通 · 上传到报告</h4>
-              <p>浏览器上传 wav → FastAPI 端点校验（20MB / 仅 wav）→ 16kHz 单声道重采样 → 补齐 8s → kaldi fbank → 归一化 → PBRNet 推理 → 结果写入 LangGraph 诊断节点 → 落库与报告生成。</p>
-            </div>
-          </div>
-          <div class="dev2-point">
-            <div class="num">2</div>
-            <div>
-              <h4>模型进程级单例懒加载</h4>
-              <p>PBRNet（AST 频域编码器 + BEATs 时域编码器 + MMTA 融合 + adapter）权重仅在服务启动后首次请求时加载一次，避免每次请求重复加载大模型。</p>
-            </div>
-          </div>
-          <div class="dev2-point">
-            <div class="num">3</div>
-            <div>
-              <h4>四分类概率输出（新增）</h4>
-              <p>后端 `predict()` 新增返回 normal / crackle / wheeze / both 完整概率分布，替代原先仅 top-1 标签，支撑前端可视化与更可信的诊断呈现。</p>
-            </div>
-          </div>
-          <div class="dev2-point">
-            <div class="num">4</div>
-            <div>
-              <h4>低可信度安全标注</h4>
-              <p>当呼吸音置信度 &lt; 0.7 时，诊断报告强制标注「听诊可信度低」，提示临床医生复核，符合医疗安全规范。</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="prob-demo">
-            <div class="title">前端可视化 · 四分类概率分布</div>
-            <div class="prob-bar">
-              <div class="row"><span class="cap">normal</span><span style="margin-left:auto;color:var(--muted)">81.6%</span></div>
-              <div class="track"><div class="fill" style="width:81.6%;background:var(--green)"></div></div>
-            </div>
-            <div class="prob-bar">
-              <div class="row"><span class="cap">crackle</span><span style="margin-left:auto;color:var(--muted)">10.1%</span></div>
-              <div class="track"><div class="fill" style="width:10.1%;background:var(--orange)"></div></div>
-            </div>
-            <div class="prob-bar">
-              <div class="row"><span class="cap">wheeze</span><span style="margin-left:auto;color:var(--muted)">4.1%</span></div>
-              <div class="track"><div class="fill" style="width:4.1%;background:var(--amber)"></div></div>
-            </div>
-            <div class="prob-bar">
-              <div class="row"><span class="cap">both</span><span style="margin-left:auto;color:var(--muted)">4.2%</span></div>
-              <div class="track"><div class="fill" style="width:4.2%;background:var(--red)"></div></div>
-            </div>
-            <div class="wf">
-              <div class="title">波形图 + 频谱图（Web Audio API + Canvas 自绘，零依赖）</div>
-              <svg viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0" y="0" width="360" height="64" rx="6" fill="#0a1120"/>
-                <polyline fill="none" stroke="#3b82f6" stroke-width="1.6" points="0,32 8,20 16,40 24,14 32,36 40,10 48,34 56,22 64,44 72,12 80,38 88,26 96,48 104,16 112,36 120,8 128,34 136,30 144,50 152,18 160,40 168,24 176,52 184,20 192,42 200,14 208,36 216,28 224,46 232,10 240,38 248,22 256,44 264,18 272,40 280,32 288,54 296,24 304,42 312,16 320,38 328,28 336,48 344,20 352,36"/>
-                <rect x="0" y="84" width="360" height="66" rx="6" fill="#0a1120"/>
-                <rect x="4" y="138" width="14" height="10" fill="#10b981"/><rect x="20" y="132" width="14" height="16" fill="#10b981"/>
-                <rect x="36" y="126" width="14" height="22" fill="#10b981"/><rect x="52" y="118" width="14" height="30" fill="#10b981"/>
-                <rect x="68" y="124" width="14" height="24" fill="#10b981"/><rect x="84" y="130" width="14" height="18" fill="#10b981"/>
-                <rect x="100" y="120" width="14" height="28" fill="#10b981"/><rect x="116" y="112" width="14" height="36" fill="#10b981"/>
-                <rect x="132" y="108" width="14" height="40" fill="#10b981"/><rect x="148" y="102" width="14" height="46" fill="#10b981"/>
-                <rect x="164" y="96" width="14" height="52" fill="#10b981"/><rect x="180" y="100" width="14" height="48" fill="#10b981"/>
-                <rect x="196" y="110" width="14" height="38" fill="#10b981"/><rect x="212" y="116" width="14" height="32" fill="#10b981"/>
-                <rect x="228" y="106" width="14" height="42" fill="#10b981"/><rect x="244" y="98" width="14" height="50" fill="#10b981"/>
-                <rect x="260" y="104" width="14" height="44" fill="#10b981"/><rect x="276" y="112" width="14" height="36" fill="#10b981"/>
-                <rect x="292" y="120" width="14" height="28" fill="#10b981"/><rect x="308" y="114" width="14" height="34" fill="#10b981"/>
-                <rect x="324" y="108" width="14" height="40" fill="#10b981"/><rect x="340" y="118" width="14" height="30" fill="#10b981"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="safety">
-  <div class="wrap">
-    <div class="safety">
-      <span class="icon" style="flex:0 0 auto">⚠️</span>
-      <p>
-        <strong style="color:var(--text)">安全与合规声明：</strong>本项目为临床决策支持应用，所有 AI 输出仅作为辅助参考，
-        不能替代执业医生的诊断与判断。真实部署需经过严格的临床验证、隐私与安全审查（HIPAA / GDPR），并纳入相应监管与运营保障措施。
+  <header>
+    <div class="wrap">
+      <div class="hero-badge">🏥 面向基层医疗的 AI 辅助诊疗平台 · 全栈项目</div>
+      <h1>Rural AI Doctor<br /><span class="grad">让优质医疗抵达乡村</span></h1>
+      <p class="hero-sub">
+        一个专注农村与低资源临床环境的 AI 辅助诊疗平台：融合对话分诊、多智能体诊断、
+        语音问诊、影像/胸片分析、RAG 医学知识检索与肺音听诊，形成从问诊到报告、全程可溯源的一体化医疗服务。
       </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#features">浏览完整功能 ↓</a>
+        <a class="btn btn-ghost" href="#arch">查看技术架构</a>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><b>6</b><span>核心智能体（Agent）</span></div>
+        <div class="stat"><b>3+</b><span>多模态输入（文本/语音/影像）</span></div>
+        <div class="stat"><b>4</b><span>肺音分类（ICBHI 标准）</span></div>
+        <div class="stat"><b>100%</b><span>诊断可溯源与审计</span></div>
+      </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<footer>
-  <div class="wrap">
-    <div class="brand"><span class="dot"></span> Rural AI Doctor</div>
-    <div>全栈 · 多智能体 · 多模态 · 可溯源 — 面向基层医疗的 AI 辅助诊疗平台</div>
-  </div>
-</footer>
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Core Features</div>
+        <h2>核心功能矩阵</h2>
+        <p class="sec-desc">从患者入口到临床运营，覆盖完整诊疗链条。每一环都强调医学合规、证据溯源与安全保障。</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature">
+          <img src="frontend/public/WelcomePage.png" alt="欢迎页" />
+          <div class="feature-body">
+            <h3><span class="icon" style="background:rgba(34,211,238,.12);color:var(--cyan)">💬</span>对话分诊</h3>
+            <p>AI 驱动的聊天与症状分诊工作流，引导式完成第一手患者评估，快速判断紧急程度并分级。</p>
+          </div>
+        </div>
+        <div class="feature">
+          <img src="frontend/public/Diagnosis_System.png" alt="多智能体诊断" />
+          <div class="feature-body">
+            <h3><span class="icon" style="background:rgba(139,92,246,.14);color:var(--violet)">🩺</span>多智能体诊断</h3>
+            <p>分诊 → 症状 → 影像 → RAG → 诊断 → 治疗方案，LangGraph 编排完整诊断流水线与报告生成。</p>
+          </div>
+        </div>
+        <div class="feature">
+          <img src="frontend/public/Result_of_Diagnosis.png" alt="诊断结果" />
+          <div class="feature-body">
+            <h3><span class="icon" style="background:rgba(34,197,94,.14);color:var(--green)">📋</span>诊断报告与方案</h3>
+            <p>自动生成结构化诊断报告、鉴别诊断、用药方案与随访计划，附病危情况应急联动。</p>
+          </div>
+        </div>
+        <div class="feature">
+          <img src="frontend/public/Knowledge_RAG_Assistant.png" alt="RAG 知识助手" />
+          <div class="feature-body">
+            <h3><span class="icon" style="background:rgba(59,130,246,.14);color:var(--blue)">📚</span>RAG 医学知识库</h3>
+            <p>检索增强生成的医学知识工作区，接入 PubMed / MedlinePlus / OpenFDA 等权威来源并带引用溯源。</p>
+          </div>
+        </div>
+        <div class="feature">
+          <img src="frontend/public/Chest_X_Ray_Analysis.png" alt="胸片分析" />
+          <div class="feature-body">
+            <h3><span class="icon" style="background:rgba(249,115,22,.14);color:var(--orange)">🩻</span>影像 / 胸片分析</h3>
+            <p>胸部 X 光等医学影像智能分析，辅助影像诊断，融入多模态诊断流程。</p>
+          </div>
+        </div>
+        <div class="feature">
+          <img src="frontend/public/Clinical_Ops_Console.png" alt="临床运营控制台" />
+          <div class="feature-body">
+            <h3><span class="icon" style="background:rgba(234,179,8,.14);color:var(--amber)">⚙️</span>临床运营控制台</h3>
+            <p>随访计划、预约排班、数据导出、离线同步等临床运营工具，支撑真实落地场景。</p>
+          </div>
+        </div>
+        <div class="feature">
+          <img src="frontend/public/Admin_Dashboard.png" alt="管理后台" />
+          <div class="feature-body">
+            <h3><span class="icon" style="background:rgba(239,68,68,.14);color:var(--red)">🛡️</span>治理与审计后台</h3>
+            <p>药物安全校验、完整审计追踪、临床医生反馈与偏见监测面板，保障安全合规。</p>
+          </div>
+        </div>
+        <div class="feature">
+          <img src="frontend/public/Admin_Dashboard_Audit_Logs.png" alt="审计日志" />
+          <div class="feature-body">
+            <h3><span class="icon" style="background:rgba(244,114,182,.14);color:#f472b6">🗂️</span>证据溯源体系</h3>
+            <p>每一次诊断与回答都带完整引用元数据（来源、URL、摘要、相似度、证据等级与校验时间戳）。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="arch">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Architecture</div>
+        <h2>技术架构</h2>
+        <p class="sec-desc">前后端分离、模块化服务设计，围绕多智能体工作流构建，数据层支持向量检索与完整审计。</p>
+      </div>
+      <div class="arch">
+        <div class="layer">
+          <div class="layer-tag">前端层</div>
+          <div class="layer-items">
+            <span class="chip hl">Next.js 16</span><span class="chip hl">React 19</span><span
+              class="chip">TypeScript</span>
+            <span class="chip">Tailwind CSS</span><span class="chip">Radix UI</span><span
+              class="chip">Zustand</span><span class="chip">React Query</span>
+          </div>
+        </div>
+        <div class="layer">
+          <div class="layer-tag">API 层</div>
+          <div class="layer-items">
+            <span class="chip hl">FastAPI</span><span class="chip">Pydantic v2</span><span
+              class="chip">Uvicorn</span><span class="chip">Slowapi 限流</span><span class="chip">JWT 鉴权</span>
+          </div>
+        </div>
+        <div class="layer">
+          <div class="layer-tag">智能体层</div>
+          <div class="layer-items">
+            <span class="chip hl">LangGraph</span><span class="chip">LangChain</span><span class="chip">Google
+              Gemini</span>
+            <span class="chip hl">AgentHarness</span><span class="chip hl">ReAct Loop</span><span
+              class="chip">bind_tools 函数调用</span>
+            <span class="chip">分诊 → 症状 → 影像 → RAG → 诊断 → 方案</span>
+          </div>
+        </div>
+        <div class="layer">
+          <div class="layer-tag">多模态 / 模型</div>
+          <div class="layer-items">
+            <span class="chip hl">PyTorch</span><span class="chip">PBRNet 肺音模型</span><span
+              class="chip">OpenCV</span><span class="chip">Pillow</span><span class="chip">gTTS / ElevenLabs</span>
+          </div>
+        </div>
+        <div class="layer">
+          <div class="layer-tag">数据层</div>
+          <div class="layer-items">
+            <span class="chip hl">PostgreSQL</span><span class="chip hl">pgvector</span><span class="chip">Alembic
+              迁移</span><span class="chip">Redis 缓存</span>
+          </div>
+        </div>
+        <div class="flow-note">
+          <span>↳ 请求流：前端 → FastAPI 路由 → 鉴权/限流 → LangGraph 工作流 → 模型/向量检索 → 持久化 → 报告返回</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Tech Stack</div>
+        <h2>技术栈总览</h2>
+      </div>
+      <div class="stack-grid">
+        <div class="stack">
+          <h3>前端 Frontend</h3>
+          <ul>
+            <li>Next.js 16</li>
+            <li>React 19</li>
+            <li>TypeScript</li>
+            <li>Tailwind CSS</li>
+            <li>Radix UI</li>
+            <li>Zustand</li>
+            <li>React Query</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h3>后端 Backend</h3>
+          <ul>
+            <li>FastAPI</li>
+            <li>SQLAlchemy 2</li>
+            <li>Pydantic Settings</li>
+            <li>Uvicorn</li>
+            <li>asyncpg</li>
+            <li>JWT (python-jose)</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h3>数据与基础设施</h3>
+          <ul>
+            <li>PostgreSQL</li>
+            <li>pgvector</li>
+            <li>Alembic</li>
+            <li>Redis</li>
+            <li>Prometheus</li>
+            <li>Sentry</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h3>AI 与智能体</h3>
+          <ul>
+            <li>Google Gemini</li>
+            <li>LangChain</li>
+            <li>LangGraph</li>
+            <li>LangSmith</li>
+            <li>PyTorch</li>
+            <li>librosa / timm</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h3>媒体与视觉</h3>
+          <ul>
+            <li>OpenCV</li>
+            <li>Pillow</li>
+            <li>PyMuPDF</li>
+            <li>pydub</li>
+            <li>gTTS</li>
+            <li>ElevenLabs</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <h3>测试与质量</h3>
+          <ul>
+            <li>Pytest</li>
+            <li>pytest-asyncio</li>
+            <li>Jest</li>
+            <li>React Testing Library</li>
+            <li>Playwright</li>
+            <li>结构化日志</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dev2">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Secondary Development</div>
+        <h2>二次开发：肺音诊断深度集成</h2>
+        <p class="sec-desc">在既有前后端链路之上，深度打通本地 PBRNet 呼吸音模型，并增强推理结果的可视化呈现，让肺音听诊从「可用」升级为「可解释、可视化」。</p>
+      </div>
+      <div class="arch dev2">
+        <div class="dev2-grid">
+          <div>
+            <div class="dev2-point">
+              <div class="num">1</div>
+              <div>
+                <h4>全链路打通 · 上传到报告</h4>
+                <p>浏览器上传 wav → FastAPI 端点校验（20MB / 仅 wav）→ 16kHz 单声道重采样 → 补齐 8s → kaldi fbank → 归一化 → PBRNet 推理 → 结果写入
+                  LangGraph 诊断节点 → 落库与报告生成。</p>
+              </div>
+            </div>
+            <div class="dev2-point">
+              <div class="num">2</div>
+              <div>
+                <h4>模型进程级单例懒加载</h4>
+                <p>PBRNet（AST 频域编码器 + BEATs 时域编码器 + MMTA 融合 + adapter）权重仅在服务启动后首次请求时加载一次，避免每次请求重复加载大模型。</p>
+              </div>
+            </div>
+            <div class="dev2-point">
+              <div class="num">3</div>
+              <div>
+                <h4>四分类概率输出（新增）</h4>
+                <p>后端 `predict()` 新增返回 normal / crackle / wheeze / both 完整概率分布，替代原先仅 top-1 标签，支撑前端可视化与更可信的诊断呈现。</p>
+              </div>
+            </div>
+            <div class="dev2-point">
+              <div class="num">4</div>
+              <div>
+                <h4>低可信度安全标注</h4>
+                <p>当呼吸音置信度 &lt; 0.7 时，诊断报告强制标注「听诊可信度低」，提示临床医生复核，符合医疗安全规范。</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="prob-demo">
+              <div class="title">前端可视化 · 四分类概率分布</div>
+              <div class="prob-bar">
+                <div class="row"><span class="cap">normal</span><span
+                    style="margin-left:auto;color:var(--muted)">81.6%</span></div>
+                <div class="track">
+                  <div class="fill" style="width:81.6%;background:var(--green)"></div>
+                </div>
+              </div>
+              <div class="prob-bar">
+                <div class="row"><span class="cap">crackle</span><span
+                    style="margin-left:auto;color:var(--muted)">10.1%</span></div>
+                <div class="track">
+                  <div class="fill" style="width:10.1%;background:var(--orange)"></div>
+                </div>
+              </div>
+              <div class="prob-bar">
+                <div class="row"><span class="cap">wheeze</span><span
+                    style="margin-left:auto;color:var(--muted)">4.1%</span></div>
+                <div class="track">
+                  <div class="fill" style="width:4.1%;background:var(--amber)"></div>
+                </div>
+              </div>
+              <div class="prob-bar">
+                <div class="row"><span class="cap">both</span><span
+                    style="margin-left:auto;color:var(--muted)">4.2%</span></div>
+                <div class="track">
+                  <div class="fill" style="width:4.2%;background:var(--red)"></div>
+                </div>
+              </div>
+              <div class="wf">
+                <div class="title">波形图 + 频谱图（Web Audio API + Canvas 自绘，零依赖）</div>
+                <svg viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0" y="0" width="360" height="64" rx="6" fill="#0a1120" />
+                  <polyline fill="none" stroke="#3b82f6" stroke-width="1.6"
+                    points="0,32 8,20 16,40 24,14 32,36 40,10 48,34 56,22 64,44 72,12 80,38 88,26 96,48 104,16 112,36 120,8 128,34 136,30 144,50 152,18 160,40 168,24 176,52 184,20 192,42 200,14 208,36 216,28 224,46 232,10 240,38 248,22 256,44 264,18 272,40 280,32 288,54 296,24 304,42 312,16 320,38 328,28 336,48 344,20 352,36" />
+                  <rect x="0" y="84" width="360" height="66" rx="6" fill="#0a1120" />
+                  <rect x="4" y="138" width="14" height="10" fill="#10b981" />
+                  <rect x="20" y="132" width="14" height="16" fill="#10b981" />
+                  <rect x="36" y="126" width="14" height="22" fill="#10b981" />
+                  <rect x="52" y="118" width="14" height="30" fill="#10b981" />
+                  <rect x="68" y="124" width="14" height="24" fill="#10b981" />
+                  <rect x="84" y="130" width="14" height="18" fill="#10b981" />
+                  <rect x="100" y="120" width="14" height="28" fill="#10b981" />
+                  <rect x="116" y="112" width="14" height="36" fill="#10b981" />
+                  <rect x="132" y="108" width="14" height="40" fill="#10b981" />
+                  <rect x="148" y="102" width="14" height="46" fill="#10b981" />
+                  <rect x="164" y="96" width="14" height="52" fill="#10b981" />
+                  <rect x="180" y="100" width="14" height="48" fill="#10b981" />
+                  <rect x="196" y="110" width="14" height="38" fill="#10b981" />
+                  <rect x="212" y="116" width="14" height="32" fill="#10b981" />
+                  <rect x="228" y="106" width="14" height="42" fill="#10b981" />
+                  <rect x="244" y="98" width="14" height="50" fill="#10b981" />
+                  <rect x="260" y="104" width="14" height="44" fill="#10b981" />
+                  <rect x="276" y="112" width="14" height="36" fill="#10b981" />
+                  <rect x="292" y="120" width="14" height="28" fill="#10b981" />
+                  <rect x="308" y="114" width="14" height="34" fill="#10b981" />
+                  <rect x="324" y="108" width="14" height="40" fill="#10b981" />
+                  <rect x="340" y="118" width="14" height="30" fill="#10b981" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="agent">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Autonomous Agent</div>
+        <h2>二次开发：自主诊断 Agent（Harness + ReAct Loop）</h2>
+        <p class="sec-desc">在既有 LangGraph 固定流水线之上，新增「工具执行环境（Harness）+ ReAct
+          主循环（Loop）」：让模型自主决定何时、调用哪些工具、调用几次，直到循证信息充分再给出诊断——由「预定流程」升级为「自主推理」。</p>
+      </div>
+
+      <div class="agent-stats">
+        <div class="agent-stat"><b>5</b><span>可调用工具</span></div>
+        <div class="agent-stat"><b>2</b><span>核心组件（Harness + Loop）</span></div>
+        <div class="agent-stat"><b>8</b><span>最大推理迭代轮数</span></div>
+        <div class="agent-stat"><b>100%</b><span>工具调用轨迹可审计</span></div>
+      </div>
+
+      <div class="loop-box">
+        <svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+          <defs>
+            <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+              <path d="M0,0 L9,4.5 L0,9 z" fill="#22d3ee" />
+            </marker>
+            <marker id="arrG" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+              <path d="M0,0 L9,4.5 L0,9 z" fill="#22c55e" />
+            </marker>
+          </defs>
+          <rect x="40" y="120" width="240" height="90" rx="14" fill="#132036" stroke="#24344f" stroke-width="1.5" />
+          <text x="160" y="158" text-anchor="middle" fill="#e6edf7" font-size="17"
+            font-weight="700">LLM（bind_tools）</text>
+          <text x="160" y="182" text-anchor="middle" fill="#8fa3bf" font-size="12.5">Gemini · tool_calls 生成</text>
+          <polygon points="360,165 430,165 395,205 325,205" fill="#16263f" stroke="#24344f" stroke-width="1.5" />
+          <text x="395" y="190" text-anchor="middle" fill="#eab308" font-size="12.5" font-weight="700">有
+            tool_calls?</text>
+          <rect x="510" y="120" width="250" height="90" rx="14" fill="#132036" stroke="#24344f" stroke-width="1.5" />
+          <text x="635" y="158" text-anchor="middle" fill="#e6edf7" font-size="16.5"
+            font-weight="700">AgentHarness.execute()</text>
+          <text x="635" y="182" text-anchor="middle" fill="#8fa3bf" font-size="12.5">工具执行 · 重试 · 轨迹记录</text>
+          <rect x="510" y="250" width="250" height="70" rx="14" fill="#16263f" stroke="#24344f" stroke-width="1.5" />
+          <text x="635" y="282" text-anchor="middle" fill="#e6edf7" font-size="15" font-weight="700">ToolMessage
+            观察回填</text>
+          <text x="635" y="304" text-anchor="middle" fill="#8fa3bf" font-size="12">JSON 观察 → 追加回消息</text>
+          <rect x="840" y="120" width="210" height="90" rx="14" fill="#0d3a2a" stroke="#14532d" stroke-width="1.5" />
+          <text x="945" y="158" text-anchor="middle" fill="#22c55e" font-size="16.5" font-weight="700">结构化最终诊断</text>
+          <text x="945" y="182" text-anchor="middle" fill="#8fa3bf" font-size="12.5">诊断 + 方案 + 分诊</text>
+          <line x1="280" y1="165" x2="322" y2="165" stroke="#22d3ee" stroke-width="2" marker-end="url(#arr)" />
+          <line x1="430" y1="190" x2="508" y2="165" stroke="#eab308" stroke-width="2" marker-end="url(#arr)" />
+          <text x="466" y="202" fill="#eab308" font-size="12">是</text>
+          <line x1="398" y1="207" x2="398" y2="285" stroke="#8fa3bf" stroke-width="1.6" stroke-dasharray="5 4" />
+          <line x1="398" y1="285" x2="838" y2="285" stroke="#22c55e" stroke-width="2" marker-end="url(#arrG)" />
+          <text x="580" y="310" fill="#22c55e" font-size="12.5">否 → 收敛</text>
+          <line x1="635" y1="250" x2="200" y2="212" stroke="#22d3ee" stroke-width="2" marker-end="url(#arr)" />
+          <text x="352" y="240" fill="#22d3ee" font-size="12">回填 → 下一轮迭代</text>
+          <text x="540" y="345" fill="#8fa3bf" font-size="12.5">循环上限：max_iterations=8 · max_tool_steps=16，防止死循环</text>
+        </svg>
+      </div>
+
+      <h3 style="font-size:16px;margin:28px 0 14px">5 个能力工具</h3>
+      <div class="agent-tools">
+        <div class="tool-card">
+          <div class="icon" style="background:rgba(34,211,238,.12);color:var(--cyan)">📝</div>
+          <div>
+            <h4>analyze_symptoms</h4>
+            <p>把患者自由文本症状结构化：主诉、持续时间、严重度、诱因等。</p>
+          </div>
+        </div>
+        <div class="tool-card">
+          <div class="icon" style="background:rgba(139,92,246,.14);color:var(--violet)">🫁</div>
+          <div>
+            <h4>analyze_lung_sound</h4>
+            <p>呼吸音 wav 听诊，输出 normal/crackle/wheeze/both 四分类与置信度。</p>
+          </div>
+        </div>
+        <div class="tool-card">
+          <div class="icon" style="background:rgba(249,115,22,.14);color:var(--orange)">🩻</div>
+          <div>
+            <h4>analyze_medical_image</h4>
+            <p>解读医学影像（胸片/CT/皮肤病灶/MRI），返回所见、严重度与建议。</p>
+          </div>
+        </div>
+        <div class="tool-card">
+          <div class="icon" style="background:rgba(59,130,246,.14);color:var(--blue)">📚</div>
+          <div>
+            <h4>retrieve_medical_evidence</h4>
+            <p>本地知识库 + PubMed/MedlinePlus/OpenFDA 循证检索，带来源与排名。</p>
+          </div>
+        </div>
+        <div class="tool-card">
+          <div class="icon" style="background:rgba(239,68,68,.14);color:var(--red)">🚑</div>
+          <div>
+            <h4>find_nearby_clinics</h4>
+            <p>根据经纬度检索附近社区医疗设施，用于紧急情况转诊联动。</p>
+          </div>
+        </div>
+        <div class="tool-card" style="border-style:dashed">
+          <div class="icon" style="background:rgba(234,179,8,.14);color:var(--amber)">🧩</div>
+          <div>
+            <h4>ToolRegistry</h4>
+            <p>统一注册与分发上述工具，并一键转换为 StructuredTool 供 bind_tools 使用。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cmp">
+        <table>
+          <tr>
+            <th style="width:130px">维度</th>
+            <th>固定流水线（LangGraph DAG）</th>
+            <th class="hl-cell">自主 Agent（Harness + ReAct Loop）</th>
+          </tr>
+          <tr>
+            <td>控制流</td>
+            <td>预编译 DAG，节点顺序与条件边硬编码</td>
+            <td class="new">模型每轮自行决策调用哪个工具</td>
+          </tr>
+          <tr>
+            <td>工具调用</td>
+            <td>节点内部固定调用</td>
+            <td class="new">function calling 动态调用</td>
+          </tr>
+          <tr>
+            <td>调用次数</td>
+            <td>每节点一次</td>
+            <td class="new">按需多次，直到信息充分</td>
+          </tr>
+          <tr>
+            <td>可解释性</td>
+            <td>状态机节点可追踪</td>
+            <td class="new">workflow_steps 记录 tool:* 审计轨迹</td>
+          </tr>
+          <tr>
+            <td>容错</td>
+            <td>单节点异常即中断</td>
+            <td class="new">Harness 重试/回退，异常不崩循环</td>
+          </tr>
+          <tr>
+            <td>入口</td>
+            <td>POST /agents/diagnose</td>
+            <td class="new">POST /agents/agentic-diagnose</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="safety">
+    <div class="wrap">
+      <div class="safety">
+        <span class="icon" style="flex:0 0 auto">⚠️</span>
+        <p>
+          <strong style="color:var(--text)">安全与合规声明：</strong>本项目为临床决策支持应用，所有 AI 输出仅作为辅助参考，
+          不能替代执业医生的诊断与判断。真实部署需经过严格的临床验证、隐私与安全审查（HIPAA / GDPR），并纳入相应监管与运营保障措施。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span> Rural AI Doctor</div>
+      <div>全栈 · 多智能体 · 多模态 · 可溯源 — 面向基层医疗的 AI 辅助诊疗平台</div>
+    </div>
+  </footer>
 
 </body>
+
 </html>
