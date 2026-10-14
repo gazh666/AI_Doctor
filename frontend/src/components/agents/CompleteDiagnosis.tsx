@@ -85,6 +85,7 @@ export function CompleteDiagnosis() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<DiagnosisResponse | null>(null);
   const [showSources, setShowSources] = useState(false);
+  const [mode, setMode] = useState<'pipeline' | 'agentic'>('pipeline');
   const hasCitations = Boolean(result?.citations && result.citations.length > 0);
 
   // Form state
@@ -113,7 +114,7 @@ export function CompleteDiagnosis() {
       if (bloodPressure) vitals.blood_pressure = bloodPressure;
       const userLocation = await getCurrentLocation();
 
-      const response = await agentsAPI.diagnose({
+      const payload = {
         symptoms: symptoms.trim(),
         age: age ? parseInt(age) : undefined,
         gender: gender || undefined,
@@ -122,7 +123,11 @@ export function CompleteDiagnosis() {
         user_location: userLocation,
         lung_sound_path: lungSoundPath || undefined,
         lung_sound_result: lungSoundResult || undefined,
-      });
+      };
+
+      const response = mode === 'agentic'
+        ? await agentsAPI.agenticDiagnose(payload)
+        : await agentsAPI.diagnose(payload);
 
       setResult(response);
       setShowSources(false);
@@ -286,6 +291,34 @@ export function CompleteDiagnosis() {
             }}
           />
 
+          {/* Agent Mode Toggle */}
+          <div className="rounded-lg border p-3 bg-gray-50">
+            <p className="text-sm font-medium mb-2">Diagnosis Mode</p>
+            <div className="grid grid-cols-2 gap-2">
+              <Button
+                type="button"
+                variant={mode === 'pipeline' ? 'default' : 'outline'}
+                onClick={() => setMode('pipeline')}
+                disabled={loading}
+              >
+                Pipeline (Fixed Graph)
+              </Button>
+              <Button
+                type="button"
+                variant={mode === 'agentic' ? 'default' : 'outline'}
+                onClick={() => setMode('agentic')}
+                disabled={loading}
+              >
+                Autonomous Agent
+              </Button>
+            </div>
+            <p className="text-xs text-gray-500 mt-2">
+              {mode === 'agentic'
+                ? 'Tool harness + ReAct loop: the model decides which tools to call.'
+                : 'Deterministic multi-node LangGraph pipeline.'}
+            </p>
+          </div>
+
           {/* Submit Button */}
           <Button
             onClick={handleDiagnose}
@@ -296,12 +329,14 @@ export function CompleteDiagnosis() {
             {loading ? (
               <>
                 <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                Running Multi-Agent Analysis...
+                {mode === 'agentic'
+                  ? 'Running Autonomous Agent...'
+                  : 'Running Multi-Agent Analysis...'}
               </>
             ) : (
               <>
                 <Activity className="w-5 h-5 mr-2" />
-                Run Complete Diagnosis
+                {mode === 'agentic' ? 'Run Autonomous Diagnosis' : 'Run Complete Diagnosis'}
               </>
             )}
           </Button>

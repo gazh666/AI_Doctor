@@ -98,5 +98,15 @@ class GeminiClient:
         
         return response
 
+    async def invoke_with_tools(self, messages: List[Any], tools: List[Any]) -> Any:
+        """带工具绑定的单轮推理（function calling）。
+
+        返回的 AIMessage 可能携带 `tool_calls`（[{name, args, id}, ...]），
+        供 ReAct 主循环执行工具。
+        """
+        llm = self._get_llm().bind_tools(tools)
+        response = await llm.ainvoke(messages)
+        return response
+
 # Singleton instance
 gemini_client = GeminiClient()

@@ -169,6 +169,109 @@ async def multi_agent_diagnosis(
             detail=f"Internal Error: {str(e)}"
         )
 
+@router.post(
+    "/agentic-diagnose",
+    response_model=DiagnosisResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Run autonomous (harness + ReAct loop) diagnostic agent",
+    description="Same inputs as /diagnose, but driven by a tool harness + ReAct loop: "
+    "the model autonomously chooses which tools (lung sound, image, RAG, symptoms, clinics) to call.",
+)
+async def agentic_diagnosis(
+    request: DiagnosisRequest,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_active_user),
+):
+    try:
+        image_analysis_data = None
+        if request.image_analysis_id:
+            result = await db.execute(
+                select(ImageAnalysis).filter(ImageAnalysis.id == request.image_analysis_id)
+            )
+            image_record = result.scalars().first()
+            image_analysis_data = image_record.analysis_result if image_record else None
+
+        # 延迟导入，避免启动期加载 torch/模型相关依赖。
+        from app.services.agents.react_agent import ReActDiagnosisAgent
+
+        agent = ReActDiagnosisAgent()
+        agent_result = await agent.run(request, image_analysis=image_analysis_data)
+
+        diagnosis_info = agent_result["diagnosis"].model_dump()
+        treatment_info = agent_result["treatment_plan"].model_dump()
+        urgency = agent_result["urgency_level"]
+        is_emergency = bool(agent_result["is_emergency"])
+
+        # Resolve / create patient record for persistence.
+        patient_record = None
+        if request.patient_id:
+            patient_result = await db.execute(
+                select(Patient).where(
+                    Patient.id == request.patient_id,
+                    Patient.user_id == current_user.id,
+                )
+            )
+            patient_record = patient_result.scalar_one_or_none()
+        if patient_record is None:
+            latest = await db.execute(
+                select(Patient).where(Patient.user_id == current_user.id)
+                .order_by(Patient.id.desc()).limit(1)
+            )
+            patient_record = latest.scalar_one_or_none()
+        if patient_record is None:
+            patient_record = Patient(
+                user_id=current_user.id,
+                name=current_user.full_name or current_user.email,
+                age=request.age,
+                gender=request.gender,
+            )
+            db.add(patient_record)
+            await db.flush()
+
+        severity_map = {
+            "EMERGENCY": "Critical",
+            "URGENT": "High",
+            "ROUTINE": "Low",
+            "SELF-CARE": "Low",
+        }
+        diagnosis_row = Diagnosis(
+            user_id=current_user.id,
+            patient_id=patient_record.id,
+            symptoms=request.symptoms,
+            diagnosis=diagnosis_info.get("primary_diagnosis", "Unable to determine"),
+            confidence=float(diagnosis_info.get("confidence", 0.0) or 0.0),
+            severity=severity_map.get(urgency, "Low"),
+            treatment_plan=treatment_info,
+            full_report=agent_result["final_report"],
+            urgency_level=urgency,
+            lung_sound_path=request.lung_sound_path,
+            lung_sound_result_json=request.lung_sound_result,
+        )
+        db.add(diagnosis_row)
+        await db.commit()
+
+        return DiagnosisResponse(
+            diagnosis=diagnosis_info.get("primary_diagnosis", "Unable to determine"),
+            confidence=float(diagnosis_info.get("confidence", 0.0) or 0.0),
+            differential_diagnoses=diagnosis_info.get("differential_diagnoses", []),
+            treatment_plan=treatment_info,
+            urgency_level=urgency,
+            final_report=agent_result["final_report"],
+            status="CRITICAL" if is_emergency else "OK",
+            emergency_info=agent_result["emergency_info"],
+            workflow_steps=agent_result["workflow_steps"],
+            is_grounded_in_rag=bool(agent_result["is_grounded_in_rag"]),
+            citations=agent_result["citations"],
+        )
+
+    except Exception as e:
+        logger.error(f"❌ Agentic Diagnosis System Failure: {str(e)}", exc_info=True)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Internal Error: {str(e)}",
+        )
+
+
 @router.get("/health", tags=["System"])
 async def get_workflow_health():
     """Endpoint to verify the agent graph is compiled and ready."""

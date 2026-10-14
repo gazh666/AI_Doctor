@@ -87,6 +87,11 @@ export const agentsAPI = {
     return response.data;
   },
 
+  agenticDiagnose: async (request: DiagnosisRequest): Promise<DiagnosisResponse> => {
+    const response = await apiClient.post<DiagnosisResponse>('/agents/agentic-diagnose', request);
+    return response.data;
+  },
+
   simpleDiagnose: async (symptoms: string): Promise<DiagnosisResponse> => {
     const response = await apiClient.post<DiagnosisResponse>('/agents/diagnose/simple', null, {
       params: { symptoms },
